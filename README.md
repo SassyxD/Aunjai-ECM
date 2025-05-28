@@ -25,7 +25,8 @@ A modern web application designed to provide immediate assistance to users who m
   - Tailwind CSS
   - React
 - **Backend**:
-  - Next.js API Routes
+  - Next.js API Routes (Old draft)
+  - Elysia.js API Routes
   - OpenAI/Gemini Integration
 - **Deployment**:
   - Vercel (recommended)
