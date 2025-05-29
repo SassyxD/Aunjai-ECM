@@ -126,23 +126,23 @@ const ScamTools: React.FC<ScamToolsProps> = ({ onQuickPrompt }) => {
     };
 
     return (
-        <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 border border-indigo-100">
-            <h2 className="text-xl font-medium text-gray-700 mb-4">
+        <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 mb-4 sm:mb-6 border border-indigo-100">
+            <h2 className="text-lg sm:text-xl font-medium text-gray-700 mb-3 sm:mb-4">
                 {t.title}
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-4">
                 {tools[language].map(tool => (
                     <button
                         key={tool.label}
-                        className={`${tool.color} text-gray-700 px-4 py-5 rounded-2xl hover:shadow-md transition-all duration-200 flex flex-col items-center justify-center gap-3 text-center min-h-[120px] border border-white/50 relative ${loading === tool.type ? 'opacity-75 cursor-wait' : ''}`}
+                        className={`${tool.color} text-gray-700 px-3 sm:px-4 py-4 sm:py-5 rounded-2xl hover:shadow-md transition-all duration-200 flex flex-col items-center justify-center gap-2 sm:gap-3 text-center min-h-[100px] sm:min-h-[120px] border border-white/50 relative ${loading === tool.type ? 'opacity-75 cursor-wait' : ''}`}
                         onClick={() => handleToolClick(tool)}
                         disabled={loading !== null}
                     >
-                        <span className="text-3xl">{tool.icon}</span>
-                        <span className="text-sm font-medium leading-tight">{tool.label}</span>
+                        <span className="text-2xl sm:text-3xl">{tool.icon}</span>
+                        <span className="text-xs sm:text-sm font-medium leading-tight">{tool.label}</span>
                         {loading === tool.type && (
                             <div className="absolute inset-0 flex items-center justify-center bg-black/10 rounded-2xl">
-                                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-gray-900"></div>
+                                <div className="animate-spin rounded-full h-5 w-5 sm:h-6 sm:w-6 border-b-2 border-gray-900"></div>
                             </div>
                         )}
                     </button>
