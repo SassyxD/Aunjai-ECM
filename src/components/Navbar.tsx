@@ -81,7 +81,16 @@ const Navbar: React.FC = () => {
 
                             {/* Menu popup */}
                             {isMenuOpen && (
-                                <div className="absolute right-0 top-12 w-48 py-2 bg-white rounded-xl shadow-lg border border-gray-100 z-50">
+                                <div
+                                    className="absolute right-0 top-12 w-48 py-2 bg-white rounded-xl shadow-lg border border-gray-100 z-50"
+                                    tabIndex={-1}
+                                    ref={menuRef}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Escape') {
+                                            toggleMenu();
+                                        }
+                                    }}
+                                >
                                     <Link
                                         href="/chat"
                                         className="w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors flex items-center space-x-2"
