@@ -1,6 +1,8 @@
 'use client';
 import React, { useRef, useEffect } from 'react';
 
+type Language = 'en' | 'th';
+
 type Message = {
     role: 'user' | 'assistant';
     content: string;
@@ -12,9 +14,24 @@ type ChatUIProps = {
     setInput: (val: string) => void;
     onSend: () => void;
     loading: boolean;
+    language: Language;
+    translations: {
+        typeMessage: string;
+        send: string;
+        error: string;
+        noResponse: string;
+    };
 };
 
-const ChatUI: React.FC<ChatUIProps> = ({ messages, input, setInput, onSend, loading }) => {
+const ChatUI: React.FC<ChatUIProps> = ({
+    messages,
+    input,
+    setInput,
+    onSend,
+    loading,
+    language,
+    translations
+}) => {
     const endRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -91,7 +108,7 @@ const ChatUI: React.FC<ChatUIProps> = ({ messages, input, setInput, onSend, load
                                 adjustTextareaHeight();
                             }}
                             onKeyDown={handleKeyDown}
-                            placeholder="Type your message..."
+                            placeholder={translations.typeMessage}
                             disabled={loading}
                         />
                         {input && (
@@ -109,7 +126,7 @@ const ChatUI: React.FC<ChatUIProps> = ({ messages, input, setInput, onSend, load
                         onClick={onSend}
                         disabled={loading || !input.trim()}
                     >
-                        Send
+                        {translations.send}
                     </button>
                 </div>
             </div>
