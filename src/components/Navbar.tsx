@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -22,6 +22,26 @@ const Navbar: React.FC = () => {
     const { language, toggleLanguage } = useLanguage();
     const t = translations[language];
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const menuRef = useRef<HTMLDivElement>(null);
+    const buttonRef = useRef<HTMLButtonElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                menuRef.current &&
+                buttonRef.current &&
+                !menuRef.current.contains(event.target as Node) &&
+                !buttonRef.current.contains(event.target as Node)
+            ) {
+                setIsMenuOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -51,6 +71,7 @@ const Navbar: React.FC = () => {
                         {/* Menu button - always visible */}
                         <div className="relative">
                             <button
+                                ref={buttonRef}
                                 onClick={toggleMenu}
                                 className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
                                 aria-label="Toggle menu"
@@ -94,12 +115,16 @@ const Navbar: React.FC = () => {
                                     <Link
                                         href="/chat"
                                         className="w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors flex items-center space-x-2"
+                                        onClick={() => setIsMenuOpen(false)}
                                     >
                                         <span className="text-indigo-400">💬</span>
                                         <span className="font-medium text-gray-700">{t.chat}</span>
                                     </Link>
                                     <button
-                                        onClick={() => window.open('tel:191')}
+                                        onClick={() => {
+                                            window.open('tel:191');
+                                            setIsMenuOpen(false);
+                                        }}
                                         className="w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors flex items-center space-x-2"
                                     >
                                         <span className="text-red-500">📞</span>
@@ -108,6 +133,7 @@ const Navbar: React.FC = () => {
                                     <Link
                                         href="/about"
                                         className="w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors flex items-center space-x-2"
+                                        onClick={() => setIsMenuOpen(false)}
                                     >
                                         <span className="text-gray-600">👥</span>
                                         <span className="text-gray-700">{t.about}</span>
@@ -121,7 +147,7 @@ const Navbar: React.FC = () => {
 
             {/* Overlay backdrop */}
             {isMenuOpen && (
-                <div 
+                <div
                     className="fixed inset-0 bg-black/10 z-40"
                     onClick={toggleMenu}
                     aria-hidden="true"
