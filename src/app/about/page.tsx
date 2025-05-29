@@ -32,9 +32,11 @@ export default function About() {
                     </h1>
                     <div className="bg-white rounded-2xl shadow-lg p-8 space-y-6">
                         <div className="w-32 h-32 mx-auto relative">
-                            <div className="w-full h-full rounded-full bg-gray-200 flex items-center justify-center text-gray-400 text-sm">
-                                example.png
-                            </div>
+                            <img
+                                src="/path/to/image.png"
+                                alt="Profile picture of Nattapong Pudtipatkosit"
+                                className="w-full h-full rounded-full object-cover"
+                            />
                         </div>
                         <div className="space-y-2">
                             <h2 className="text-xl font-semibold text-gray-800">Nattapong Pudtipatkosit</h2>
