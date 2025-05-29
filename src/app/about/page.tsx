@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { TerminalEffect } from '@/components/TerminalEffect';
 import { TerminalCard } from '@/components/TerminalCard';
+import Link from 'next/link';
 
 const translations = {
     en: {
@@ -84,7 +85,7 @@ const figletTitle = `
 ╚═╝  ╚═╝╚═════╝  ╚═════╝  ╚═════╝    ╚═╝        ╚═════╝ ╚══════╝
 `.trim();
 
-export default function About() {
+const AboutPage = () => {
     const { language } = useLanguage();
     const t = translations[language];
     const [isLoading, setIsLoading] = useState(true);
@@ -141,7 +142,7 @@ export default function About() {
     }, [currentLine]);
 
     return (
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
             {isLoading ? (
                 <motion.div
                     key="loader"
@@ -159,10 +160,11 @@ export default function About() {
                 </motion.div>
             ) : (
                 <motion.div
-                    className="min-h-screen bg-black flex flex-col"
+                    key="content"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 0.8 }}
+                    exit={{ opacity: 0 }}
+                    className="min-h-screen bg-black flex flex-col"
                 >
                     <Navbar />
                     <main className="flex-1 container mx-auto px-3 sm:px-4 py-6 sm:py-8 md:py-12">
@@ -233,4 +235,6 @@ export default function About() {
             )}
         </AnimatePresence>
     );
-} 
+};
+
+export default AboutPage; 
