@@ -5,6 +5,7 @@ import ChatUI from '../../components/ChatUI';
 import ScamTools from '../../components/ScamTools';
 import BlacklistChecker from '../../components/BlacklistChecker';
 import { useLanguage } from '@/context/LanguageContext';
+import Link from 'next/link';
 
 const translations = {
     en: {
@@ -76,6 +77,17 @@ export default function ChatPage() {
                     </div>
                 </div>
             </main>
+            <footer className="py-4 text-center text-gray-600">
+                Made with <span className="text-red-500">❤️</span> by{' '}
+                <Link
+                    href="https://github.com/SassyxD"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-indigo-500 hover:text-indigo-600 transition-colors"
+                >
+                    SassyxD
+                </Link>
+            </footer>
         </div>
     );
 } 
