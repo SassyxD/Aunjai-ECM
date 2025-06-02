@@ -1,6 +1,6 @@
 # Emergency Chat Assistant
 
-A modern web application designed to provide immediate assistance to users who might be experiencing scams or fraud. Built with Next.js 13+, TypeScript, and Tailwind CSS.
+A modern web application designed to provide immediate assistance to users who might be experiencing scams or fraud. Built with Next.js 15+, TypeScript, and Tailwind CSS.
 
 ## 🚀 Features
 
@@ -20,10 +20,11 @@ A modern web application designed to provide immediate assistance to users who m
 ## 🛠️ Tech Stack
 
 - **Frontend**: 
-  - Next.js 13+ (App Router)
+  - Next.js 15+ (App Router)
   - TypeScript
   - Tailwind CSS
   - React
+  - Three.js (Experimental)
 - **Backend**:
   - Next.js API Routes (Old draft)
   - Elysia.js API Routes
@@ -94,7 +95,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 🌟 Support
 
-For support, please open an issue in the GitHub repository or contact the maintainers.
+Reach me out bro
 
 ## ✨ Acknowledgments
 
